@@ -3,7 +3,7 @@
 Pulmonary rehabilitation (PR) benefits people with COPD, yet individuals with Alpha-1 Antitrypsin Deficiency (AATD) often need more personalised support and structured follow-up.  
 This project adapts and co-designs practical tools to help clinicians and patients tailor PR using a Treatable Traits framework. It builds on a multi-method programme at the University of Birmingham (systematic review, cohort analysis, qualitative work, and a three-round Delphi with patients and HCPs).
 
-**Live site:** https://YOUR_USERNAME.github.io/YOUR_REPO/  
+**Live site:** https://faldani.github.io/PR-for-AATD/ 
 **Contact:** f.a.alwadani@bham.ac.uk
 
 ---

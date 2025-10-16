@@ -5,23 +5,11 @@
   <title>Co-Designing Pulmonary Rehabilitation Resources for AATD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- SEO -->
+  <!-- Basic SEO (optional but helpful) -->
   <meta name="description" content="Trait→Plan Checklist, Exercise Passport, Stay-Active Kit, and Staff Education Guide co-designed for AATD pulmonary rehabilitation.">
   <link rel="canonical" href="https://faldani.github.io/PR-for-AATD/">
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://faldani.github.io/PR-for-AATD/">
-  <meta property="og:title" content="Co-Designing Pulmonary Rehabilitation Resources for AATD">
-  <meta property="og:description" content="Practical tools to tailor PR using a Treatable Traits framework.">
-  <meta property="og:image" content="https://faldani.github.io/PR-for-AATD/assets/cover.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Co-Designing PR Resources for AATD">
-  <meta name="twitter:description" content="Trait→Plan, Exercise Passport, Stay-Active Kit, Staff Education Guide.">
-  <meta name="twitter:image" content="https://faldani.github.io/PR-for-AATD/assets/cover.jpg">
-
-  <!-- Minimal in-page styles (keeps your existing /assets/css/style.css working) -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Styles -->
   <style>
     :root { --accent:#0366d6; }
     body { max-width: 980px; margin: 0 auto; line-height: 1.6; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; padding: 0 1rem 4rem; }
@@ -32,8 +20,6 @@
     nav a { margin: 0 .5rem; text-decoration: none; color: var(--accent); }
     nav a:hover { text-decoration: underline; }
     .banner { background: #fff3cd; border: 1px solid #ffe08a; padding: .8rem 1rem; border-radius: 8px; margin: 1rem 0; }
-    .grid { display:grid; gap:2.0rem; }
-    @media (min-width: 820px){ .grid { grid-template-columns: 1fr; } } /* keep single column on home */
     section { padding-top: .25rem; }
     h1, h2 { line-height:1.25; }
     .card { border:1px solid #e5e7eb; border-radius:12px; padding:1rem; }
@@ -81,6 +67,7 @@
       </p>
     </section>
 
+    <!-- ===== RESOURCES ===== -->
     <section aria-labelledby="resources">
       <h2 id="resources">Resources <span class="pill">v0.3</span></h2>
 

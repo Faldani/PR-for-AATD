@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trait→Plan Checklist · PR for AATD</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body { background: var(--bg); }
+    form {
+      max-width: 950px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    h1, h2 {
+      color: var(--accent);
+      text-align: center;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 1.2rem;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-family: inherit;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    textarea { resize: vertical; }
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.6rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    button:hover { background: var(--accent-light); }
+
+    @media print {
+      button { display: none; }
+      body { background: #fff; }
+      form { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="topbar">
+    <div class="header-container">
+      <div class="header-left">
+        <img src="../images/uob-logo.png" alt="University of Birmingham logo" width="130">
+      </div>
+      <div class="header-right">
+        <h1>Trait→Plan Checklist</h1>
+        <p>Personalising Pulmonary Rehabilitation for AATD</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../docs/overview.html">Overview</a>
+    <a href="../docs/methods.html">Co-Design & Methods</a>
+    <a href="index.html">Prototypes</a>
+    <a href="../sessions/session1-agenda.html">Workshops</a>
+    <a href="../outputs/index.html">Outputs</a>
+  </nav>
+
+  <main>
+    <form>
+      <h2>Trait→Plan (Clinician Form)</h2>
+
+      <div class="row">
+        <div>
+          <label for="clinician">Clinician name / role</label>
+          <input type="text" id="clinician" name="clinician">
+        </div>
+        <div>
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date">
+        </div>
+      </div>
+
+      <label for="trait">Treatable trait</label>
+      <select id="trait" name="trait">
+        <option value="">Select trait...</option>
+        <option>Breathlessness variability</option>
+        <option>Deconditioning / inactivity</option>
+        <option>Anxiety / panic</option>
+        <option>Oxygen use / setup</option>
+        <option>Pacing / energy conservation</option>
+        <option>Flare / relapse risk</option>
+        <option>Other</option>
+      </select>
+
+      <label for="cue">Cues / indicators</label>
+      <textarea id="cue" rows="3" placeholder="E.g. RPE >5 at low workload, irregular attendance, symptom flare, anxiety episodes..."></textarea>
+
+      <label for="action">Proposed action / intervention</label>
+      <textarea id="action" rows="4" placeholder="E.g. pacing education, referral to psychology, oxygen review, step-up plan, etc."></textarea>
+
+      <label for="target">Exercise target / progression rule</label>
+      <textarea id="target" rows="2" placeholder="E.g. Target RPE 3–5, +5–10% load weekly if within range and no red flags."></textarea>
+
+      <label for="followup">Follow-up / monitoring plan</label>
+      <textarea id="followup" rows="3" placeholder="E.g. Review after 2 weeks; repeat 6MWT or step test; check symptom diary."></textarea>
+
+      <label for="notes">Additional notes</label>
+      <textarea id="notes" rows="2" placeholder="Other observations or contextual details..."></textarea>
+
+      <button type="button" onclick="window.print()">🖨 Print / Save as PDF</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="../images/uob-logo.png" alt="University of Birmingham logo" width="110">
+        <p>School of Health Sciences · University of Birmingham</p>
+      </div>
+      <div class="footer-right">
+        <p>Contact: <a href="mailto:f.a.alwadani@bham.ac.uk">f.a.alwadani@bham.ac.uk</a></p>
+        <p>© 2025 PR for AATD Research Team</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

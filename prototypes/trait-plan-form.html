@@ -3,64 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trait→Plan Checklist · PR for AATD</title>
+  <title>Trait→Plan (Concise, Interactive) · PR for AATD</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
+    /* Compact, clinic-friendly layout */
     body { background: var(--bg); }
-    form {
-      max-width: 950px;
-      margin: 2rem auto;
-      background: #fff;
-      padding: 1.5rem 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    .card { max-width: 960px; margin: 1.25rem auto; background: #fff; padding: 1rem 1.25rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    h1, h2 { color: var(--accent); margin: .25rem 0 .5rem; }
+    .grid { display: grid; gap: .75rem; }
+    .g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    label { font-weight: 600; font-size: .95rem; display:block; margin-bottom: .25rem; }
+    input[type="text"], input[type="date"], input[type="number"], textarea, select {
+      width: 100%; padding: .55rem .6rem; border: 1px solid #d0d7de; border-radius: 8px; font: inherit;
     }
-    h1, h2 {
-      color: var(--accent);
-      text-align: center;
-    }
-    label {
-      font-weight: 600;
-      display: block;
-      margin-top: 1.2rem;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-      font-family: inherit;
-      font-size: 1rem;
-      margin-top: 0.3rem;
-    }
-    textarea { resize: vertical; }
-    .row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-    button {
-      display: inline-block;
-      margin-top: 1.5rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.6rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    button:hover { background: var(--accent-light); }
-
+    textarea { min-height: 70px; resize: vertical; }
+    fieldset { border: 1px solid #e6eaf0; border-radius: 10px; padding: .75rem; }
+    legend { font-weight: 700; color: var(--accent); padding: 0 .4rem; }
+    .row { display:flex; flex-wrap:wrap; gap: .75rem 1rem; align-items:center; }
+    .chip { display:inline-flex; align-items:center; gap:.4rem; padding:.3rem .55rem; border:1px solid #d0d7de; border-radius:999px; font-size:.9rem; }
+    .actions { display:flex; gap:.5rem; flex-wrap:wrap; margin-top: .75rem; }
+    .btn { cursor:pointer; border:none; border-radius:10px; padding:.6rem 1rem; background:var(--accent); color:#fff; font-weight:600; }
+    .btn.alt { background: var(--accent-light); }
+    .muted { color:#666; font-size:.9rem; }
+    @media (max-width: 720px) { .g2, .g3 { grid-template-columns: 1fr; } }
     @media print {
-      button { display: none; }
-      body { background: #fff; }
-      form { box-shadow: none; border: none; }
+      .actions, nav, header { display:none !important; }
+      .card { box-shadow:none; border:none; padding:0; }
+      body { background:#fff; }
     }
   </style>
 </head>
-
 <body>
   <!-- Header -->
   <header class="topbar">
@@ -69,13 +42,14 @@
         <img src="../images/uob-logo.png" alt="University of Birmingham logo" width="130">
       </div>
       <div class="header-right">
-        <h1>Trait→Plan Checklist</h1>
-        <p>Personalising Pulmonary Rehabilitation for AATD</p>
+        <h1>Trait→Plan (Concise, Interactive)</h1>
+        <p>PR for AATD · Case discussion form</p>
       </div>
     </div>
   </header>
 
-  <nav>
+  <!-- Nav -->
+  <nav aria-label="Primary">
     <a href="../index.html">Home</a>
     <a href="../docs/overview.html">Overview</a>
     <a href="../docs/methods.html">Co-Design & Methods</a>
@@ -85,51 +59,207 @@
   </nav>
 
   <main>
-    <form>
-      <h2>Trait→Plan (Clinician Form)</h2>
+    <form class="card" id="ttForm">
+      <!-- Step 0 -->
+      <fieldset>
+        <legend>Step 0 · Patient & AATD Background</legend>
+        <div class="grid g3">
+          <div>
+            <label for="pid">Patient initials / ID</label>
+            <input id="pid" name="pid" type="text">
+          </div>
+          <div>
+            <label for="dob">Date of birth</label>
+            <input id="dob" name="dob" type="date">
+          </div>
+          <div>
+            <label for="phase">Current PR phase</label>
+            <select id="phase" name="phase">
+              <option>Initial</option><option>Mid-programme</option><option>Completion</option><option>Follow-up</option>
+            </select>
+          </div>
+        </div>
 
-      <div class="row">
-        <div>
-          <label for="clinician">Clinician name / role</label>
-          <input type="text" id="clinician" name="clinician">
+        <div class="grid g3">
+          <div>
+            <label for="genotype">AATD genotype</label>
+            <select id="genotype" name="genotype">
+              <option>ZZ</option><option>SZ</option><option>MZ</option><option>Null</option><option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="dxdate">Date of AATD diagnosis</label>
+            <input id="dxdate" name="dxdate" type="date">
+          </div>
+          <div>
+            <label for="augment">Augmentation therapy</label>
+            <input id="augment" name="augment" type="text" placeholder="Yes/No, start date, product">
+          </div>
         </div>
-        <div>
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date">
+
+        <div class="grid g3">
+          <div>
+            <label for="lf">Lung function (latest)</label>
+            <input id="lf" name="lf" type="text" placeholder="FEV1 %pred / FVC %pred / SpO₂ rest %">
+          </div>
+          <div>
+            <label for="smoking">Smoking history</label>
+            <input id="smoking" name="smoking" type="text" placeholder="Never / Ex (quit yyyy) / Current pack-yrs">
+          </div>
+          <div>
+            <label for="work">Activity / work status</label>
+            <input id="work" name="work" type="text" placeholder="Employed / Retired / Student …">
+          </div>
         </div>
+      </fieldset>
+
+      <!-- Step 1 -->
+      <fieldset>
+        <legend>Step 1 · Treatable Traits (tick)</legend>
+        <div class="row">
+          <label class="chip"><input type="checkbox" name="trait" value="breath_var"> Breathlessness variability</label>
+          <label class="chip"><input type="checkbox" name="trait" value="decond"> Deconditioning / inactivity</label>
+          <label class="chip"><input type="checkbox" name="trait" value="psych_wb"> Psychological / emotional well-being</label>
+          <label class="chip"><input type="checkbox" name="trait" value="anxiety"> Anxiety / stress response</label>
+          <label class="chip"><input type="checkbox" name="trait" value="oxygen"> Oxygen use / setup issues</label>
+          <label class="chip"><input type="checkbox" name="trait" value="pacing"> Pacing / energy conservation</label>
+          <label class="chip"><input type="checkbox" name="trait" value="flare"> Flare / relapse risk</label>
+          <label class="chip"><input type="checkbox" name="trait" value="other"> Other</label>
+        </div>
+      </fieldset>
+
+      <!-- Step 2 -->
+      <fieldset>
+        <legend>Step 2 · Assessment Cues / Contributing Factors</legend>
+        <textarea name="cues" placeholder="E.g., 6MWT / ISWT / step test, CAT, HADS, RPE >5 at low load, SpO₂ <90% on exertion, diary notes, anxiety triggers…"></textarea>
+      </fieldset>
+
+      <!-- Step 3 -->
+      <fieldset>
+        <legend>Step 3 · Agreed Actions / Interventions</legend>
+        <div class="grid g2">
+          <div>
+            <label for="act_ex">Exercise & activity</label>
+            <textarea id="act_ex" name="act_ex" placeholder="Ramp plan; progress if RPE 3–5 & SpO₂ ≥ 90%…"></textarea>
+          </div>
+          <div>
+            <label for="act_breath">Breathing & pacing</label>
+            <textarea id="act_breath" name="act_breath" placeholder="Pursed-lip breathing; good/bad day pacing; interval walking…"></textarea>
+          </div>
+          <div>
+            <label for="act_o2">Oxygen management</label>
+            <textarea id="act_o2" name="act_o2" placeholder="Flow & tubing check; supervised exercise with O₂; concentrator tips…"></textarea>
+          </div>
+          <div>
+            <label for="act_psych">Psychological / emotional</label>
+            <textarea id="act_psych" name="act_psych" placeholder="Brief relaxation; reassurance; peer group; psychology referral…"></textarea>
+          </div>
+          <div>
+            <label for="act_edu">Education</label>
+            <textarea id="act_edu" name="act_edu" placeholder="Vaccination; trigger management; flare plan; augmentation adherence…"></textarea>
+          </div>
+          <div>
+            <label for="notes">Clinician notes</label>
+            <textarea id="notes" name="notes" placeholder="Key observations or constraints…"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Step 4 -->
+      <fieldset>
+        <legend>Step 4 · Exercise Target / Progression Rule</legend>
+        <div class="grid g3">
+          <div>
+            <label for="rpe">Target RPE</label>
+            <select id="rpe" name="rpe">
+              <option>3</option><option>4</option><option>5</option>
+            </select>
+          </div>
+          <div>
+            <label for="progress">Progression</label>
+            <select id="progress" name="progress">
+              <option>+1–2 min/week</option>
+              <option>+5% load/week</option>
+              <option>+10% load/week</option>
+            </select>
+          </div>
+          <div>
+            <label for="freq">Frequency (sessions/week)</label>
+            <input id="freq" name="freq" type="number" min="1" max="14" placeholder="e.g., 3">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:.5rem">
+          <span class="muted" style="min-width:120px; font-weight:600;">Mode:</span>
+          <label class="chip"><input type="checkbox" name="mode" value="walk"> Walking</label>
+          <label class="chip"><input type="checkbox" name="mode" value="cycle"> Cycling</label>
+          <label class="chip"><input type="checkbox" name="mode" value="bands"> Resistance bands (e.g., TheraBand)</label>
+          <label class="chip"><input type="checkbox" name="mode" value="mixed"> Mixed / circuit</label>
+          <label class="chip"><input type="checkbox" name="mode" value="continuous"> Continuous</label>
+          <label class="chip"><input type="checkbox" name="mode" value="interval"> Interval (walk–rest / step–sit)</label>
+        </div>
+
+        <label for="comments" style="margin-top:.6rem; display:block; font-weight:600;">Comments</label>
+        <textarea id="comments" name="comments" placeholder="E.g., progress only if SpO₂ ≥ 90% and within target RPE; add extra rest after flare…"></textarea>
+      </fieldset>
+
+      <!-- Step 5 -->
+      <fieldset>
+        <legend>Step 5 · Follow-up / Monitoring</legend>
+        <div class="grid g2">
+          <div>
+            <label for="rev2w">2 weeks — indicators & plan</label>
+            <textarea id="rev2w" name="rev2w" placeholder="Attendance; RPE; O₂ confidence → phone / in-person / tele-PR…"></textarea>
+          </div>
+          <div>
+            <label for="rev6w">6 weeks — indicators & plan</label>
+            <textarea id="rev6w" name="rev6w" placeholder="6MWT / steps; CAT; tracker → continue / modify / discharge…"></textarea>
+          </div>
+        </div>
+        <label for="flare" style="margin-top:.6rem; display:block; font-weight:600;">Flare event — plan</label>
+        <textarea id="flare" name="flare" placeholder="Restart ramp; review augmentation; safety advice…"></textarea>
+      </fieldset>
+
+      <!-- SMART Goals -->
+      <fieldset>
+        <legend>Step 6 · SMART Goal (concise)</legend>
+        <div class="grid g2">
+          <div>
+            <label for="smart_specific">Specific</label>
+            <input id="smart_specific" name="smart_specific" type="text" placeholder="What exactly?">
+          </div>
+          <div>
+            <label for="smart_measure">Measurable</label>
+            <input id="smart_measure" name="smart_measure" type="text" placeholder="How to measure?">
+          </div>
+          <div>
+            <label for="smart_achievable">Achievable</label>
+            <input id="smart_achievable" name="smart_achievable" type="text" placeholder="Is it realistic?">
+          </div>
+          <div>
+            <label for="smart_relevant">Relevant</label>
+            <input id="smart_relevant" name="smart_relevant" type="text" placeholder="Why it matters?">
+          </div>
+          <div>
+            <label for="smart_time">Time-bound</label>
+            <input id="smart_time" name="smart_time" type="date">
+          </div>
+          <div>
+            <label for="smart_statement">Overall goal statement</label>
+            <input id="smart_statement" name="smart_statement" type="text" placeholder='I will … by … (date)'>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="button" class="btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+        <button type="reset" class="btn alt">Reset</button>
+        <span class="muted">Use Print → “Save as PDF” to export. No data is uploaded.</span>
       </div>
-
-      <label for="trait">Treatable trait</label>
-      <select id="trait" name="trait">
-        <option value="">Select trait...</option>
-        <option>Breathlessness variability</option>
-        <option>Deconditioning / inactivity</option>
-        <option>Anxiety / panic</option>
-        <option>Oxygen use / setup</option>
-        <option>Pacing / energy conservation</option>
-        <option>Flare / relapse risk</option>
-        <option>Other</option>
-      </select>
-
-      <label for="cue">Cues / indicators</label>
-      <textarea id="cue" rows="3" placeholder="E.g. RPE >5 at low workload, irregular attendance, symptom flare, anxiety episodes..."></textarea>
-
-      <label for="action">Proposed action / intervention</label>
-      <textarea id="action" rows="4" placeholder="E.g. pacing education, referral to psychology, oxygen review, step-up plan, etc."></textarea>
-
-      <label for="target">Exercise target / progression rule</label>
-      <textarea id="target" rows="2" placeholder="E.g. Target RPE 3–5, +5–10% load weekly if within range and no red flags."></textarea>
-
-      <label for="followup">Follow-up / monitoring plan</label>
-      <textarea id="followup" rows="3" placeholder="E.g. Review after 2 weeks; repeat 6MWT or step test; check symptom diary."></textarea>
-
-      <label for="notes">Additional notes</label>
-      <textarea id="notes" rows="2" placeholder="Other observations or contextual details..."></textarea>
-
-      <button type="button" onclick="window.print()">🖨 Print / Save as PDF</button>
     </form>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-left">
